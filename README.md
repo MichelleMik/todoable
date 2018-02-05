@@ -2,27 +2,49 @@
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/todoable`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
-
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'todoable'
+gem 'todoable', :git => 'https://github.com/michellemik/todoable.git'
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install todoable
-
 ## Usage
 
-TODO: Write usage instructions here
+Getting Started with username and password
+
+```ruby
+  client = Todoable::Client.new(username: username, password: password)
+```
+
+You can also initialize a new client with a token:
+
+```ruby
+  client = Todoable::Client.new(token: token)
+```
+
+Once you have an authenticated client with a token, you can query the Todoable server to create and update lists and list items
+
+  ```ruby
+    client.create_list(name: name)
+
+    client.delete_list(list_id: list_id)
+
+    client.get_lists
+
+    client.add_list_item(list_id: list_id, name: name)
+
+    client.finish_item(list_id: list_id, item_id: item_id)
+  ```
+
+
+
+
 
 ## Development
 
@@ -32,10 +54,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/todoable.
+Bug reports and pull requests are welcome on GitHub at https://github.com/michellemik/todoable.
 
 
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-
